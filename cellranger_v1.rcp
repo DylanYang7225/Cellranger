@@ -12,13 +12,19 @@ From: ubuntu
 %post
   export DEBIAN_FRONTEND=noninteractive
   apt-get update
-  apt-get install -y wget
+  apt-get install -y wget \
+                     rpm2cpion \
 
   #--------------------------------------------------------------------------------
   # install cellranger and reference genome
   mkdir -p /cellranger
   cd /cellranger 
-  wget -O cellranger-3.1.0.tar.gz "http://cf.10xgenomics.com/releases/cell-exp/cellranger-3.1.0.tar.gz?Expires=1587444312&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cDovL2NmLjEweGdlbm9taWNzLmNvbS9yZWxlYXNlcy9jZWxsLWV4cC9jZWxscmFuZ2VyLTMuMS4wLnRhci5neiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTU4NzQ0NDMxMn19fV19&Signature=VgplH0cSyGexx97j~dug9MeDnbUSFRhMBE2CbIkG4ph0FKEzTJcdruYqlhVQYwtJ0BjngO1~TXWaxfytheKJUT6s-CpMnt79PaUJ-GqxthloAVE9bagkyYy669-RBPI-0RHPB070qrxo6Tp0vksHfS7fzhBirF-tBF845wQlfaf1PjrGai7ru5qsrMebF5zP1-SsIA46NPA8SAazBlqeisz3PZeuoXBkr8zfqQJ67luSKyG29NPCLMAR~iUa~tpgaQczHUGJVRPANSWeieSWCweoKMoI85hujvGuXW2kWOfZvlvcceYzjHojtBUojRB3f~Tn1FvWss98jeXnjHOP0w__&Key-Pair-Id=APKAI7S6A5RYOXBWRPDA"
+  wget -O bcl2fastq_installer.tar "https://files.softwaredownloads.illumina.com/e8ed3335-5201-48ff-a2bc-db4bfb792c85/bcl2fastq2-v2-20-0-linux-x86-64.zip?Expires=1589561253&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9maWxlcy5zb2Z0d2FyZWRvd25sb2Fkcy5pbGx1bWluYS5jb20vZThlZDMzMzUtNTIwMS00OGZmLWEyYmMtZGI0YmZiNzkyYzg1L2JjbDJmYXN0cTItdjItMjAtMC1saW51eC14ODYtNjQuemlwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNTg5NTYxMjUzfX19XX0_&Signature=IW3EdNpQ2w0vlL7vLGe15PkW5d70a9-LlkIJQtVflTZB1SmPTyV4D-JQzqWw1w1CAVzQ4fJ4vy45IaSt8rMMLfGw8VyQfa4rXq65wDE8W5FUEfasdm11DjLHh9t4vFG9-ME88Cq4dcXN3KogOhxF7kQyBoMVeGrd4NM~IJnDYo~~32qhaLm~xzZhw0Xch9PBviWBbg2suQoHN3ZWxQ2neWZGQHo7-KJZU7swThBCuuQqKuwRhS877FGlGfS65OMR1d8x045d4VoC~tJdbrdeE9Wqkv9syUcnMes3euz5gLe4OBWDhA6mKYjl-ldc-SFmg3Dl4HBIDgtuK9EESC-Y6w__&Key-Pair-Id=APKAJO3UYWPXK4A26FPQ"
+  tar -xvf bcl2fastq_installer.tar
+  rpm2cpio ./bcl2fastq2-v2.20.0.422-Linux-x86_64.rpm | cpio -idmv
+  rm bcl2fastq_installer.tar
+ 
+  wget -O cellranger-3.1.0.tar.gz "http://cf.10xgenomics.com/releases/cell-exp/cellranger-3.1.0.tar.gz?Expires=1589604063&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cDovL2NmLjEweGdlbm9taWNzLmNvbS9yZWxlYXNlcy9jZWxsLWV4cC9jZWxscmFuZ2VyLTMuMS4wLnRhci5neiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTU4OTYwNDA2M319fV19&Signature=RvDY8Luw8S8f3DGRrXIBdq6lQH6kBj8k33kveuinTHe3odeMw95tSiRLiNiFex4r1Omi-XSf9LSKmYW-hdGnmCgrBSS4pMtFR8tCFCv752c29bXgFWCkJHNJhMEoAUCr7uqaxQ3OpYlVVaNtEdUGj7obF2gEUdXwVB01Kr4bkNnILJ7nOu-Qnis8q-kor8aJhHXV-F9i2Qpgp1EPRGF2S1kNEZql1l10GhRLyqYWI~yn5BKTMeqe2ihVOD4DjSouOXx2ZRg1LEeJzWU9-yrQ3ULUR6sNUIjKfmrciruobNnlF1hlyI9DHppdyh6CoSKhV0GKI0T7LEu90y7ufsebxg__&Key-Pair-Id=APKAI7S6A5RYOXBWRPDA"
   wget http://cf.10xgenomics.com/supp/cell-exp/refdata-cellranger-GRCh38-3.0.0.tar.gz
   wget http://cf.10xgenomics.com/supp/cell-vdj/refdata-cellranger-vdj-GRCh38-alts-ensembl-3.1.0.tar.gz
   tar -xvzf refdata-cellranger-GRCh38-3.0.0.tar.gz
