@@ -7,7 +7,7 @@ From: ubuntu
     Image_Version CellRanger_3.1.0
     
 %environment
-  export PATH=$PATH:/cellranger/cellranger-3.1.0
+  export PATH=$PATH:/cellranger/cellranger-3.1.0:/bin/cpio
 
 %post
   export DEBIAN_FRONTEND=noninteractive
@@ -20,7 +20,7 @@ From: ubuntu
   # install cellranger and reference genome
   mkdir -p /cellranger
   cd /cellranger 
-  wget -O bcl2fastq_installer.zip "https://files.softwaredownloads.illumina.com/e8ed3335-5201-48ff-a2bc-db4bfb792c85/bcl2fastq2-v2-20-0-linux-x86-64.zip?Expires=1589567240&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9maWxlcy5zb2Z0d2FyZWRvd25sb2Fkcy5pbGx1bWluYS5jb20vZThlZDMzMzUtNTIwMS00OGZmLWEyYmMtZGI0YmZiNzkyYzg1L2JjbDJmYXN0cTItdjItMjAtMC1saW51eC14ODYtNjQuemlwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNTg5NTY3MjQwfX19XX0_&Signature=eMRwc~cwuLuMMUIiEIiHB6vaBdI3vTK1rjss~otL7l4jDV7sv679Hf-F4FN5YS3EC5xNoz2Wmue9qe714VI9gv56lHn8cc6EFDIFvwl5H-iWYt15Hha86VvoMMs5CLj5AAIuUWPRUzo-panwf~GZiR9df8PGCsF3gNThpH75HxEpDJmAjFDiZwjRKNtvLpGCYLzqAEg6MQdyJvlvG8MD~ebauSitUhjtYjOcv7fqwLRf6T8TKtluyU1PTdhLKYDkNnxUz6O~wTwAKyua9DmP-8we7PCAwkohRYxrB1SvsRjFQ2zUQwwvhdP9p4uRhXMnR-Idm4gjrmYhHBb4KsrJ5A__&Key-Pair-Id=APKAJO3UYWPXK4A26FPQ"
+  wget -O bcl2fastq_installer.zip "https://files.softwaredownloads.illumina.com/e8ed3335-5201-48ff-a2bc-db4bfb792c85/bcl2fastq2-v2-20-0-linux-x86-64.zip?Expires=1589567791&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9maWxlcy5zb2Z0d2FyZWRvd25sb2Fkcy5pbGx1bWluYS5jb20vZThlZDMzMzUtNTIwMS00OGZmLWEyYmMtZGI0YmZiNzkyYzg1L2JjbDJmYXN0cTItdjItMjAtMC1saW51eC14ODYtNjQuemlwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNTg5NTY3NzkxfX19XX0_&Signature=oNwq0w6yoJ30g5bNNb8mM9t4VUEPjP0Cf-fQZQMdhUCm4rLvdwH06mw~3w-sBLnNF9ptUNytP2n~tFpP7KSvnKR0mg~dlod2A4FqjPaR3CQYqH1SxYk5EfloydNJ9uOaUEwOKFTrSQ05n4HaD1l7rtEbPbqzUzUIkuAL76-CjzsbFhJ3AoUz2z-ASFozXoEm8z6Ny3zD~6rRgGXrs5K0IjlBQeOdeU1QC-C46pTjQChLUhfuoeiZci2p2JQsbntpjlIlqDVnP1mP7GTolFCwqEdmpfJd5wyt7TPJDgLoBgu56qam4ItRWEoH2O3xNUej3sYjwQTTAEa7JDZRg9pvUw__&Key-Pair-Id=APKAJO3UYWPXK4A26FPQ"
   unzip bcl2fastq_installer.zip
   rpm2cpio ./bcl2fastq2-v2.20.0.422-Linux-x86_64.rpm | cpio -idmv
   rm bcl2fastq_installer.zip
