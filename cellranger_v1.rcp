@@ -14,6 +14,8 @@ From: ubuntu
   apt-get update
   apt-get install -y wget \
                      unzip \
+                     # both cpio and rpm2cpio are needed to install bcl2fastq
+                     cpio \
                      rpm2cpio \
 
   #--------------------------------------------------------------------------------
