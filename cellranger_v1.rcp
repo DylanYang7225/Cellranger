@@ -13,13 +13,14 @@ From: ubuntu
   export DEBIAN_FRONTEND=noninteractive
   apt-get update
   apt-get install -y wget \
+                     unzip \
                      rpm2cpio \
 
   #--------------------------------------------------------------------------------
   # install cellranger and reference genome
   mkdir -p /cellranger
   cd /cellranger 
-  wget -O bcl2fastq_installer.zip "https://files.softwaredownloads.illumina.com/e8ed3335-5201-48ff-a2bc-db4bfb792c85/bcl2fastq2-v2-20-0-linux-x86-64.zip?Expires=1589564724&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9maWxlcy5zb2Z0d2FyZWRvd25sb2Fkcy5pbGx1bWluYS5jb20vZThlZDMzMzUtNTIwMS00OGZmLWEyYmMtZGI0YmZiNzkyYzg1L2JjbDJmYXN0cTItdjItMjAtMC1saW51eC14ODYtNjQuemlwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNTg5NTY0NzI0fX19XX0_&Signature=xw2IPy3UyCMO7ycr2Y9bZwKwWMRINgPqdcJa6r2ewgln-9Jd5qz6GwEmk6qKeF7TxoDYk5Sg2HnHCXVzJXy8K-LQUoo1getkODvQt6iWDuVqf6c~zHJa9PYgHqOvAXmt7~gKoP-zPEMYnuYL6NTgjLWusnE2MoB09ZY8RP5uIYMUo3drbqBm7GKRIzZ4EFlVoWeEcTzHfEAx1tN5qVwVFYsv5nXCkX0Xxq8BI6IdL47M0tlCZuaslaMN5AMmRf2odrEzxwcpkHavy3XIbVOh-D2nmmle9iXDXWqLhRSfyG0S25OFA-vXcs9h2cQKm0S10qiHW4polk8dq7ZMjshVlg__&Key-Pair-Id=APKAJO3UYWPXK4A26FPQ"
+  wget -O bcl2fastq_installer.zip "https://files.softwaredownloads.illumina.com/e8ed3335-5201-48ff-a2bc-db4bfb792c85/bcl2fastq2-v2-20-0-linux-x86-64.zip?Expires=1589566451&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9maWxlcy5zb2Z0d2FyZWRvd25sb2Fkcy5pbGx1bWluYS5jb20vZThlZDMzMzUtNTIwMS00OGZmLWEyYmMtZGI0YmZiNzkyYzg1L2JjbDJmYXN0cTItdjItMjAtMC1saW51eC14ODYtNjQuemlwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNTg5NTY2NDUxfX19XX0_&Signature=NRORfrAQlv0UiqNJRH8QDpzAnpUTiiQKsKmEfZ-EmcpCFFAZgCEmfTFDI56ApTfdKvyEA1awtD6TguGNrl4UeckMBv9ASA~~P4zz58ZE9J4feO1yx24z8Jz5tzX9o30kq0OdJemTbcqmD9~8irdAf0HxSeuy8zKOSNa1DQQyg8rKY5-ZlWu7ZTW5rbvGKhuJD3T8nRfXu9N7CJ6znyMM8OtmGBRH1C~eIuO2ju4yw1lSOSH9nWm1594pASB3KkcR3kpgbLhFAwjIbWJprizfUM93qlRjbIO9k3HHJZfFMw5kbZ7DCZjKMREIpHc6ZRumXB17etCi-DQ3gW3XCiY5UA__&Key-Pair-Id=APKAJO3UYWPXK4A26FPQ"
   unzip -xvf bcl2fastq_installer.zip
   rpm2cpio ./bcl2fastq2-v2.20.0.422-Linux-x86_64.rpm | cpio -idmv
   rm bcl2fastq_installer.zip
