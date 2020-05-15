@@ -13,13 +13,13 @@ From: ubuntu
   export DEBIAN_FRONTEND=noninteractive
   apt-get update
   apt-get install -y wget \
-                     rpm2cpion \
+                     rpm2cpio \
 
   #--------------------------------------------------------------------------------
   # install cellranger and reference genome
   mkdir -p /cellranger
   cd /cellranger 
-  wget -O bcl2fastq_installer.tar "https://files.softwaredownloads.illumina.com/e8ed3335-5201-48ff-a2bc-db4bfb792c85/bcl2fastq2-v2-20-0-linux-x86-64.zip?Expires=1589561253&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9maWxlcy5zb2Z0d2FyZWRvd25sb2Fkcy5pbGx1bWluYS5jb20vZThlZDMzMzUtNTIwMS00OGZmLWEyYmMtZGI0YmZiNzkyYzg1L2JjbDJmYXN0cTItdjItMjAtMC1saW51eC14ODYtNjQuemlwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNTg5NTYxMjUzfX19XX0_&Signature=IW3EdNpQ2w0vlL7vLGe15PkW5d70a9-LlkIJQtVflTZB1SmPTyV4D-JQzqWw1w1CAVzQ4fJ4vy45IaSt8rMMLfGw8VyQfa4rXq65wDE8W5FUEfasdm11DjLHh9t4vFG9-ME88Cq4dcXN3KogOhxF7kQyBoMVeGrd4NM~IJnDYo~~32qhaLm~xzZhw0Xch9PBviWBbg2suQoHN3ZWxQ2neWZGQHo7-KJZU7swThBCuuQqKuwRhS877FGlGfS65OMR1d8x045d4VoC~tJdbrdeE9Wqkv9syUcnMes3euz5gLe4OBWDhA6mKYjl-ldc-SFmg3Dl4HBIDgtuK9EESC-Y6w__&Key-Pair-Id=APKAJO3UYWPXK4A26FPQ"
+  wget -O bcl2fastq_installer.tar "https://files.softwaredownloads.illumina.com/e8ed3335-5201-48ff-a2bc-db4bfb792c85/bcl2fastq2-v2-20-0-linux-x86-64.zip?Expires=1589561958&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9maWxlcy5zb2Z0d2FyZWRvd25sb2Fkcy5pbGx1bWluYS5jb20vZThlZDMzMzUtNTIwMS00OGZmLWEyYmMtZGI0YmZiNzkyYzg1L2JjbDJmYXN0cTItdjItMjAtMC1saW51eC14ODYtNjQuemlwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNTg5NTYxOTU4fX19XX0_&Signature=AvdpVEnArd2smW6nK0REHfE6dmzsb0I~xmC41hN2pC~3xLjGDt6n6fMyCB-qS4DEc6tqGBYALoO6AGrwBmRkgt0273-m6xsKBcpJ-Ioctxk7TUVBn9lKtAlwJ1iM9jGQQi~f~bpYx4QfSn--NaXrGUWPF~N0nKMt7X9MH-loBXp-05x7oOyqH~91~2rnTG9BlSBNnsW0HpKcJlnl~UpAyu-juun1d-a7J-u2EIxkmDEjeQsJwqvV6Ia9fjwm1AG1gKOwI9roWkfYCKyx20VedfBLPIS7cfICV0Kne1jHiCzp0RpFwlWSB09jRbozs5C7gtwI~LVFc-CgWY0p57fCbA__&Key-Pair-Id=APKAJO3UYWPXK4A26FPQ"
   tar -xvf bcl2fastq_installer.tar
   rpm2cpio ./bcl2fastq2-v2.20.0.422-Linux-x86_64.rpm | cpio -idmv
   rm bcl2fastq_installer.tar
