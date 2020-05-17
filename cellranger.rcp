@@ -33,9 +33,9 @@ From: ubuntu
   wget --quiet -O cellranger-3.1.0.tar.gz "http://cf.10xgenomics.com/releases/cell-exp/cellranger-3.1.0.tar.gz?Expires=1589796169&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cDovL2NmLjEweGdlbm9taWNzLmNvbS9yZWxlYXNlcy9jZWxsLWV4cC9jZWxscmFuZ2VyLTMuMS4wLnRhci5neiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTU4OTc5NjE2OX19fV19&Signature=B4HPcuSLbfQOLgfJJtbfa9XZJculg7okW~poZcwDhC-MnLYwrQCjTwW0z5LMuHG8lyBjBVhRju5Ss5lFH7~1I9~T0oQbEjHQ2YyJBBOi3f-DSE5TTUg0eVy-aMdlTLbPZVnKjM37VGp3xUDes14Vk1HcR6b6PlwhFpBKWwsgQyAq7V4rdNMapiezJ0uCj72WUJAeUv1foYHwELz81LLew6wTbMF35xwnSXpMmBqawHqYE4Dz7w5vnXhFECatyBHLjegI8rp3j~fYnwHhuNuLSG04fJt18mB-WbXRQWK9LXkwJOINX0j1XfeMwbhxNwgbDJHTT-z4Ldq2hhPF8dUUAg__&Key-Pair-Id=APKAI7S6A5RYOXBWRPDA"
   wget --quiet -http://cf.10xgenomics.com/supp/cell-exp/refdata-cellranger-GRCh38-3.0.0.tar.gz
   wget --quiet http://cf.10xgenomics.com/supp/cell-vdj/refdata-cellranger-vdj-GRCh38-alts-ensembl-3.1.0.tar.gz
-  tar -xvzf -q refdata-cellranger-GRCh38-3.0.0.tar.gz
-  tar -xvzf -q cellranger-3.1.0.tar.gz
-  tar -xvzf -q refdata-cellranger-vdj-GRCh38-alts-ensembl-3.1.0.tar.gz
+  tar -xzf refdata-cellranger-GRCh38-3.0.0.tar.gz
+  tar -xzf cellranger-3.1.0.tar.gz
+  tar -xzf refdata-cellranger-vdj-GRCh38-alts-ensembl-3.1.0.tar.gz
   rm refdata-cellranger-GRCh38-3.0.0.tar.gz
   rm cellranger-3.1.0.tar.gz
   rm refdata-cellranger-vdj-GRCh38-alts-ensembl-3.1.0.tar.gz
