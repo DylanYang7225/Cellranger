@@ -1,0 +1,32 @@
+Bootstrap: shub
+From: DylanYang7225/Cellranger:latest
+
+%labels
+    Maintainer Hang(Dylan) Yang
+    Image_Name CellRanger
+    Image_Version CellRanger_3.1.0
+
+%environment
+  export PATH=$PATH:/cellranger/cellranger-3.1.0:/bin/cpio:/cellranger/usr/local/bin
+
+%post
+  export DEBIAN_FRONTEND=noninteractive
+  apt-get update
+
+  apt-get install -y zip\
+                     unzip
+  # install cpio and rpm2cpio for reading and installing .rpm files
+  apt-get install -y apt-utils \
+                     cpio \
+                     rpm2cpio
+
+  #--------------------------------------------------------------------------------
+  # install cellranger and reference genome
+  mkdir -p /cellranger
+  cd /cellranger
+  wget --no-check-certificate "https://docs.google.com/uc?export=download&id=1cGP9vI47DuKzrkoCaxGrYLtYv0qbPtri" -O bcl2fastq_installer.zip -q
+  unzip bcl2fastq_installer.zip
+  rpm2cpio ./bcl2fastq2-v2.20.0.422-Linux-x86_64.rpm | cpio -idmv
+  rm bcl2fastq_installer.zip
+  rm bcl2fastq2-v2.20.0.422-Linux-x86_64.rpm
+
