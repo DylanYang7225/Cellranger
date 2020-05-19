@@ -2,10 +2,10 @@ Bootstrap: docker
 From: ubuntu
 
 %labels
-    Maintainer Hang(Dylan) Yang	
+    Maintainer Hang(Dylan) Yang
     Image_Name CellRanger
     Image_Version CellRanger_3.1.0
-    
+
 %environment
   export PATH=$PATH:/cellranger/cellranger-3.1.0:/bin/cpio:/cellranger/usr/local/bin
 
@@ -14,33 +14,34 @@ From: ubuntu
   apt-get update
 
   apt-get install -y wget \
-                     unzip 
-  # install cpio and rpm2cpio for reading and installing .rpm files                    
+                     zip\
+                     unzip
+  # install cpio and rpm2cpio for reading and installing .rpm files
   apt-get install -y apt-utils \
                      cpio \
-                     rpm2cpio 
+                     rpm2cpio
 
   #--------------------------------------------------------------------------------
   # install cellranger and reference genome
   mkdir -p /cellranger
-  cd /cellranger 
-  wget --quiet -O bcl2fastq_installer.zip "https://files.softwaredownloads.illumina.com/e8ed3335-5201-48ff-a2bc-db4bfb792c85/bcl2fastq2-v2-20-0-linux-x86-64.zip?Expires=1589753207&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9maWxlcy5zb2Z0d2FyZWRvd25sb2Fkcy5pbGx1bWluYS5jb20vZThlZDMzMzUtNTIwMS00OGZmLWEyYmMtZGI0YmZiNzkyYzg1L2JjbDJmYXN0cTItdjItMjAtMC1saW51eC14ODYtNjQuemlwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNTg5NzUzMjA3fX19XX0_&Signature=WciHYcLy3i-d9NuwIvpVn1zD1mOtz2zoA2p4KNpb-iAh6jLupHDEj~zDhY4NZo9ffCayRHmRL3lT5~EWqHQ15oLa0ro2VUD2LxqvpdAxiutKbMI3xbKB5vyUR-cM~gXoMfl~RgHyi5JlP-~o4CsyVFzZB5EdJxnBd~n76nV7ODg29i8zlgiQ-V7HtnEjd2kLAMPHHHqN-XDIUHaNRrplLZFzyPdD2iQO9KVd3KxpwURx9IzFc8rNf7vcIf32wUpTYIL-IJ46qZGXEl~xXletIS3Mw4LID-VKj0Ec6kuZj8R0cPjHS-m1pAlmrnmliRM6TretveuZiDiGTXxQlafDSg__&Key-Pair-Id=APKAJO3UYWPXK4A26FPQ"
+  cd /cellranger
+  wget -O bcl2fastq_installer.zip "https://files.softwaredownloads.illumina.com/e8ed3335-5201-48ff-a2bc-db4bfb792c85/bcl2fastq2-v2-20-0-linux-x86-64.zip?Expires=1589870039&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cHM6Ly9maWxlcy5zb2Z0d2FyZWRvd25sb2Fkcy5pbGx1bWluYS5jb20vZThlZDMzMzUtNTIwMS00OGZmLWEyYmMtZGI0YmZiNzkyYzg1L2JjbDJmYXN0cTItdjItMjAtMC1saW51eC14ODYtNjQuemlwIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNTg5ODcwMDM5fX19XX0_&Signature=VL2dlASQJ3Cs4nbQ970ieb4DeuItnHSY4hJP3p-6WtoHrOQJwqwXeGDHo0z~DdUqsgKhZKcCrLcGjNX5-tkdcTbYH6IGJYlh~~ZCdF4KEMCQYSAXzQvgJ8EQBhk~SpQxdU5p9HUY-5UBKBKJkowrmNChd~Na-0U1vyJXOrvZnEnm~DoZDs6feSe1uJT0MTbdvxJ8NXHIUAw5qt4lQ6acZwJtKIbrsoN2pvnlJnZ3993si-VKe05-95bmJSFO2ndMvWO8DLuwEFH8-5whBosebHodscNbpFakM2eTEmmXKMHUBEMy9TOW~R43p~VvFwlC2NqtWVyqlwRm7RL1ASgD0w__&Key-Pair-Id=APKAJO3UYWPXK4A26FPQ" -q
   unzip bcl2fastq_installer.zip
   rpm2cpio ./bcl2fastq2-v2.20.0.422-Linux-x86_64.rpm | cpio -idmv
   rm bcl2fastq_installer.zip
   rm bcl2fastq2-v2.20.0.422-Linux-x86_64.rpm
- 
-  wget --quiet -O cellranger-3.1.0.tar.gz "http://cf.10xgenomics.com/releases/cell-exp/cellranger-3.1.0.tar.gz?Expires=1589796169&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cDovL2NmLjEweGdlbm9taWNzLmNvbS9yZWxlYXNlcy9jZWxsLWV4cC9jZWxscmFuZ2VyLTMuMS4wLnRhci5neiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTU4OTc5NjE2OX19fV19&Signature=B4HPcuSLbfQOLgfJJtbfa9XZJculg7okW~poZcwDhC-MnLYwrQCjTwW0z5LMuHG8lyBjBVhRju5Ss5lFH7~1I9~T0oQbEjHQ2YyJBBOi3f-DSE5TTUg0eVy-aMdlTLbPZVnKjM37VGp3xUDes14Vk1HcR6b6PlwhFpBKWwsgQyAq7V4rdNMapiezJ0uCj72WUJAeUv1foYHwELz81LLew6wTbMF35xwnSXpMmBqawHqYE4Dz7w5vnXhFECatyBHLjegI8rp3j~fYnwHhuNuLSG04fJt18mB-WbXRQWK9LXkwJOINX0j1XfeMwbhxNwgbDJHTT-z4Ldq2hhPF8dUUAg__&Key-Pair-Id=APKAI7S6A5RYOXBWRPDA"
-  wget --quiet -http://cf.10xgenomics.com/supp/cell-exp/refdata-cellranger-GRCh38-3.0.0.tar.gz
-  wget --quiet http://cf.10xgenomics.com/supp/cell-vdj/refdata-cellranger-vdj-GRCh38-alts-ensembl-3.1.0.tar.gz
-  tar -xzf refdata-cellranger-GRCh38-3.0.0.tar.gz
-  tar -xzf cellranger-3.1.0.tar.gz
+
+  wget -O cellranger-3.1.0.tar.gz "http://cf.10xgenomics.com/releases/cell-exp/cellranger-3.1.0.tar.gz?Expires=1589912971&Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiaHR0cDovL2NmLjEweGdlbm9taWNzLmNvbS9yZWxlYXNlcy9jZWxsLWV4cC9jZWxscmFuZ2VyLTMuMS4wLnRhci5neiIsIkNvbmRpdGlvbiI6eyJEYXRlTGVzc1RoYW4iOnsiQVdTOkVwb2NoVGltZSI6MTU4OTkxMjk3MX19fV19&Signature=SLUwTV7pceIdZ8~PEAqspjUGSaY4EY0Dy415sZnVsc85JxksMS8wg7X9DNp0MpczXrUx-S~hS-cKKSnX8DWW7WnoDpxMrfuUJPCAoX~cawc8aK3EIvJ8WukStNjrkOXDK8nl8PJarBOXpbxJfaoBgq5qlL44FsBmlJ6bGzYJ9glzBdUZO2enx~~XGRqOHNmuZH-0-mEf43-VRh5p1BPlzyKHKUmtc8OAQc4pfPT0h2mpOZacztl6IOSzIIiCwEVbLPVqhoDD1yZXyr1clbGKZm5s53iQRcr~NhAq1FWoKDAg1nLoL~165ecjDemRCqTEkMzcY13ysDGHm7AbKiNfOA__&Key-Pair-Id=APKAI7S6A5RYOXBWRPDA" -q
+  wget http://cf.10xgenomics.com/supp/cell-exp/refdata-cellranger-GRCh38-3.0.0.tar.gz -q
+  wget http://cf.10xgenomics.com/supp/cell-vdj/refdata-cellranger-vdj-GRCh38-alts-ensembl-3.1.0.tar.gz -q
+  tar -xzf refdata-cellranger-GRCh38-3.0.0.tar.gz 
+  tar -xzf cellranger-3.1.0.tar.gz 
   tar -xzf refdata-cellranger-vdj-GRCh38-alts-ensembl-3.1.0.tar.gz
   rm refdata-cellranger-GRCh38-3.0.0.tar.gz
   rm cellranger-3.1.0.tar.gz
   rm refdata-cellranger-vdj-GRCh38-alts-ensembl-3.1.0.tar.gz
-   
+
 # Create directories to bind-mount data and reference genome and to store output
-  mkdir -p /output 
-  mkdir -p /data 
-  mkdir -p /work/scratch
+  mkdir -p /output
+  mkdir -p /data
+  mkdir -p /work
